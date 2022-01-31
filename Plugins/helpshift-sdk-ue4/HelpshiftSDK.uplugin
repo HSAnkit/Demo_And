@@ -1,0 +1,25 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "10.0.0",
+	"FriendlyName": "HelpshiftSDK",
+	"Description": "Plugin wrapping native Helpshift SDK for iOS and Android",
+	"Category": "Code Plugins",
+	"CreatedBy": "Helpshift",
+	"CreatedByURL": "https://www.helpshift.com/",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "HelpshiftSDK",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"WhitelistPlatforms": [ "Win64", "Win32", "Mac", "Android", "IOS" ]
+		}
+	]
+}

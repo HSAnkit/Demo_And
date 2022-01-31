@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (c) 2021 Helpshift
+-->
+<root xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <init>
+    <log text="[Helpshift] Android UPL initialization"/>
+    
+    <setStringReplace result="DefaultIconDir" source="$S(PluginDir)" find="/Source/HelpshiftSDK" with="/Resources/Icons" />
+    <setStringFromProperty result="DrawablePathToEdit" ini="Engine" section="/Script/HelpshiftSDK.HelpshiftSettings" property="DrawablePath" default="$S(DefaultIconDir)"/>
+    <setStringReplace result="HalfwayEditedDrawablePath" source="$S(DrawablePathToEdit)" find="(Path=&quot;" with=""/>
+    <setStringReplace result="DrawableDir" source="$S(HalfwayEditedDrawablePath)" find="&quot;)" with=""/>
+    
+    <setStringReplace result="DefaultSoundDir" source="$S(PluginDir)" find="/Source/HelpshiftSDK" with="/Resources/Sounds" />
+    <setStringFromProperty result="SoundsPathToEdit" ini="Engine" section="/Script/HelpshiftSDK.HelpshiftSettings" property="SoundsPath" default="$S(DefaultSoundDir)"/>
+    <setStringReplace result="HalfwayEditedSoundPath" source="$S(SoundsPathToEdit)" find="(Path=&quot;" with=""/>
+    <setStringReplace result="SoundsDir" source="$S(HalfwayEditedSoundPath)" find="&quot;)" with=""/>
+  </init>
+
+  <prebuildCopies>
+    <copyDir src="$S(PluginDir)/Private/Java" dst="$S(BuildDir)/src/com/helpshift/unrealsdk" />
+    <copyDir src="$S(DrawableDir)" dst="$S(BuildDir)/res/drawable" />
+    <copyDir src="$S(SoundsDir)" dst="$S(BuildDir)/res/raw" />
+    <copyFile src="$S(PluginDir)/../ThirdParty/Android/helpshiftx-release.aar" dst="$S(BuildDir)/gradle/app/libs/helpshiftx-release.aar" />
+  </prebuildCopies>
+
+  <!-- optional additions to proguard -->
+  <proguardAdditions>
+    <insert>
+      -dontwarn com.helpshift.**
+      -keep class com.helpshift.** { *; }
+      -keep interface com.helpshift.** { *; }
+    </insert>
+  </proguardAdditions>
+
+  <buildGradleAdditions>
+    <insert>
+      dependencies {
+        implementation fileTree(dir: 'libs', include: ['*.aar'])
+        implementation 'com.android.support:appcompat-v7:28.0.0'
+<!--        implementation 'com.helpshift:helpshift-sdkx:10.0.0'-->
+      }
+      repositories {
+        maven { url 'https://maven.google.com' }
+      }
+    </insert>
+  </buildGradleAdditions>
+  
+  <androidManifestUpdates>
+      <addElements tag="application">
+        <activity android:name="com.helpshift.unrealsdk.HelpshiftBridgeActivity"/>
+      </addElements>
+  </androidManifestUpdates>
+</root>
