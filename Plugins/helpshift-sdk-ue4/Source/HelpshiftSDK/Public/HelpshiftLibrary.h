@@ -196,3 +196,42 @@ public:
     static HelpshiftCallbackDelegate* IosDelegate;
 #endif
 };
+
+UCLASS()
+class HELPSHIFTSDK_API UHSDebugLog : public UBlueprintFunctionLibrary
+{
+    /**
+    * @param Tag: log tag
+    * @param Message: log message
+    */
+    UFUNCTION(BlueprintCallable, Category = "Helpshift")
+    static void d(const FString& Tag, const FString& Message);
+
+    /**
+    * @param Tag: log tag
+    * @param Message: log message
+    */
+    UFUNCTION(BlueprintCallable, Category = "Helpshift")
+    static void i(const FString& Tag, const FString& Message);
+
+    /**
+    * @param Tag: log tag
+    * @param Message: log message
+    */
+    UFUNCTION(BlueprintCallable, Category = "Helpshift")
+    static void v(const FString& Tag, const FString& Message);
+
+    /**
+    * @param Tag: log tag
+    * @param Message: log message
+    */
+    UFUNCTION(BlueprintCallable, Category = "Helpshift")
+    static void w(const FString& Tag, const FString& Message);
+
+    /**
+    * @param Tag: log tag
+    * @param Message: log message
+    */
+    UFUNCTION(BlueprintCallable, Category = "Helpshift")
+    static void e(const FString& Tag, const FString& Message);
+}

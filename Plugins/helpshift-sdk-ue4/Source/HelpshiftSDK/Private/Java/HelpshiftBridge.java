@@ -12,6 +12,7 @@ import com.helpshift.Helpshift;
 import com.helpshift.HelpshiftAuthenticationFailureReason;
 import com.helpshift.HelpshiftEventsListener;
 import com.helpshift.UnsupportedOSVersionException;
+import com.helpshift.HSDebugLog;
 
 import java.util.Map;
 
@@ -176,5 +177,25 @@ public class HelpshiftBridge {
 			String soundName = (String) parameters.get("notificationSoundId");
 			parameters.put("notificationSoundId", getSoundId(context, soundName));
 		}
+	}
+
+	static void d(String Tag, String message) {
+		HSDebugLog.d(Tag, message);
+	}
+
+	static void v(String Tag, String message) {
+		HSDebugLog.v(Tag, message);
+	}
+
+	static void i(String Tag, String message) {
+		HSDebugLog.i(Tag, message);
+	}
+
+	static void w(String Tag, String message) {
+		HSDebugLog.w(Tag, message);
+	}
+
+	static void errorLog(String Tag, String message) {
+		HSDebugLog.e(Tag, message);
 	}
 }

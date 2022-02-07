@@ -244,6 +244,61 @@ void UHelpshiftLibrary::BindAuthFailureDelegate(const FHelpshiftAuthFailureDeleg
     AuthFailureReasonHandler = Callback;
 }
 
+void UHSDebugLog::d(const FString& Tag, const FString& Message)
+{
+#if PLATFORM_ANDROID
+    JNIEnv* Env = FAndroidApplication::GetJavaEnv();
+    
+    HelpshiftMethodCallUtils::CallStaticVoidMethod(HelpshiftBridgeClassName, "d", "(Landroid/app/Activity;Ljava/util/Map;)V", FJavaWrapper::GameActivityThis, HelpshiftVariantUtils::VariantMapToJavaMap(Env, Parameters));
+#elif PLATFORM_IOS
+    // Todo: ios
+#endif
+}
+
+void UHSDebugLog::i(const FString& Tag, const FString& Message)
+{
+#if PLATFORM_ANDROID
+    JNIEnv* Env = FAndroidApplication::GetJavaEnv();
+    
+    HelpshiftMethodCallUtils::CallStaticVoidMethod(HelpshiftBridgeClassName, "i", "(Landroid/app/Activity;Ljava/util/Map;)V", FJavaWrapper::GameActivityThis, HelpshiftVariantUtils::VariantMapToJavaMap(Env, Parameters));
+#elif PLATFORM_IOS
+    // Todo: ios
+#endif
+}
+
+void UHSDebugLog::v(const FString& Tag, const FString& Message)
+{
+#if PLATFORM_ANDROID
+    JNIEnv* Env = FAndroidApplication::GetJavaEnv();
+    
+    HelpshiftMethodCallUtils::CallStaticVoidMethod(HelpshiftBridgeClassName, "v", "(Landroid/app/Activity;Ljava/util/Map;)V", FJavaWrapper::GameActivityThis, HelpshiftVariantUtils::VariantMapToJavaMap(Env, Parameters));
+#elif PLATFORM_IOS
+    // Todo: ios
+#endif
+}
+
+void UHSDebugLog::w(const FString& Tag, const FString& Message)
+{
+#if PLATFORM_ANDROID
+    JNIEnv* Env = FAndroidApplication::GetJavaEnv();
+    
+    HelpshiftMethodCallUtils::CallStaticVoidMethod(HelpshiftBridgeClassName, "w", "(Landroid/app/Activity;Ljava/util/Map;)V", FJavaWrapper::GameActivityThis, HelpshiftVariantUtils::VariantMapToJavaMap(Env, Parameters));
+#elif PLATFORM_IOS
+    // Todo: ios
+#endif
+}
+
+void UHSDebugLog::e(const FString& Tag, const FString& Message)
+{
+#if PLATFORM_ANDROID
+    JNIEnv* Env = FAndroidApplication::GetJavaEnv();
+    
+    HelpshiftMethodCallUtils::CallStaticVoidMethod(HelpshiftBridgeClassName, "e", "(Landroid/app/Activity;Ljava/util/Map;)V", FJavaWrapper::GameActivityThis, HelpshiftVariantUtils::VariantMapToJavaMap(Env, Parameters));
+#elif PLATFORM_IOS
+    // Todo: ios
+#endif
+}
+
 TMap<FString, FHelpshiftConfigParameter> UHelpshiftLibrary::ParseIosNotificationPayload(const FString& Payload)
 {
     TSharedPtr<FJsonObject> JsonObject = MakeShareable(new FJsonObject);
